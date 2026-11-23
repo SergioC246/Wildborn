@@ -16,3 +16,13 @@ shape = SubResource("CapsuleShape3D_wddc5")
 [node name="Cuerpo" type="MeshInstance3D" parent="." unique_id=756390303]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_wddc5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=607950014]
+
+[node name="ContadorMadera" type="Label" parent="CanvasLayer" unique_id=1885748436]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 175.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 32
+text = "Madera: 0"
