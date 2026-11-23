@@ -2,11 +2,17 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-const COSTE_HOGUERA = 5
+const COSTE_HOGUERA_MADERA = 5
+const COSTE_HOGUERA_PIEDRA = 3
 const ESCENA_HOGUERA = preload("res://hoguera.tscn")
 
 var madera = 0
+var piedra = 0
 @onready var contador_madera = $CanvasLayer/ContadorMadera
+
+
+func _ready() -> void:
+	actualizar_contador()
 
 
 func _process(_delta: float) -> void:
@@ -36,21 +42,25 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func agregar_madera(cantidad: int) -> void:
-	madera += cantidad
+func agregar_recurso(tipo: String, cantidad: int) -> void:
+	if tipo == "madera":
+		madera += cantidad
+	elif tipo == "piedra":
+		piedra += cantidad
 	actualizar_contador()
 
 
 func actualizar_contador() -> void:
-	contador_madera.text = "Madera: " + str(madera)
+	contador_madera.text = "Madera: " + str(madera) + "    Piedra: " + str(piedra)
 
 
 func construir_hoguera() -> void:
-	if madera < COSTE_HOGUERA:
-		print("No tienes suficiente madera. Necesitas ", COSTE_HOGUERA)
+	if madera < COSTE_HOGUERA_MADERA or piedra < COSTE_HOGUERA_PIEDRA:
+		print("Necesitas ", COSTE_HOGUERA_MADERA, " de madera y ", COSTE_HOGUERA_PIEDRA, " de piedra")
 		return
 
-	madera -= COSTE_HOGUERA
+	madera -= COSTE_HOGUERA_MADERA
+	piedra -= COSTE_HOGUERA_PIEDRA
 	actualizar_contador()
 
 	var hoguera = ESCENA_HOGUERA.instantiate()

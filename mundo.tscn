@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bt86jijflvhij" path="res://jugador.tscn" id="1_6ba58"]
 [ext_resource type="PackedScene" uid="uid://q5wxdp1tdkxq" path="res://arbol.tscn" id="2_lgngo"]
+[ext_resource type="PackedScene" uid="uid://bhddpswqiqe3d" path="res://roca.tscn" id="3_fw4w5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwo6f"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -58,3 +59,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 2)
 
 [node name="Arbol4" parent="." unique_id=1862821018 instance=ExtResource("2_lgngo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -12)
+
+[node name="Roca" parent="." unique_id=1610170065 instance=ExtResource("3_fw4w5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
+
+[node name="Roca2" parent="." unique_id=494164692 instance=ExtResource("3_fw4w5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -2)
+
+[node name="Roca3" parent="." unique_id=1213978348 instance=ExtResource("3_fw4w5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 10)
+
+[node name="Roca4" parent="." unique_id=1097749304 instance=ExtResource("3_fw4w5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -4)
