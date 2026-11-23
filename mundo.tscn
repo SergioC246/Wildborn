@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://b3w2bqp0u2ec7"]
+
+[ext_resource type="PackedScene" uid="uid://bt86jijflvhij" path="res://jugador.tscn" id="1_6ba58"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwo6f"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_6ba58"]
+sky_material = SubResource("ProceduralSkyMaterial_xwo6f")
+
+[sub_resource type="Environment" id="Environment_lgngo"]
+background_mode = 2
+sky = SubResource("Sky_6ba58")
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwo6f"]
+albedo_color = Color(0.2901961, 0.47843137, 0.20784314, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wddc5"]
+material = SubResource("StandardMaterial3D_xwo6f")
+size = Vector2(500, 500)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lgngo"]
+data = PackedVector3Array(250, 0, 250, -250, 0, 250, 250, 0, -250, -250, 0, 250, -250, 0, -250, 250, 0, -250)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wddc5"]
+
+[node name="Mundo" type="Node3D" unique_id=188632270]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1704621613]
+environment = SubResource("Environment_lgngo")
+
+[node name="Suelo" type="MeshInstance3D" parent="." unique_id=1321094359]
+mesh = SubResource("PlaneMesh_wddc5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Suelo" unique_id=1244894077]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Suelo/StaticBody3D" unique_id=518230135]
+shape = SubResource("ConcavePolygonShape3D_lgngo")
+
+[node name="Sol" type="DirectionalLight3D" parent="." unique_id=1148715595]
+transform = Transform3D(0.8660254, -0.38302222, 0.32139382, 0, 0.64278764, 0.76604444, -0.5, -0.66341394, 0.5566704, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Jugador" parent="." unique_id=824565509 instance=ExtResource("1_6ba58")]
+
+[node name="Camara" type="Camera3D" parent="Jugador" unique_id=1379213256]
+transform = Transform3D(1, 0, 0, 0, 0.81915206, 0.57357645, 0, -0.57357645, 0.81915206, 0, 15, 20)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1386870996]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 0)
+mesh = SubResource("BoxMesh_wddc5")
