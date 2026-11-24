@@ -16,7 +16,7 @@ Su objetivo es aprender a dirigir y revisar el trabajo de la IA, no solo recibir
 2. **Un cambio cada vez.** No metas varias funciones nuevas a la vez. No toques lo que no se ha pedido.
 3. **No rompas lo que ya funciona.** Si un cambio afecta a otros sistemas, avisa antes.
 4. **Para cambios grandes, propón un plan primero** y espera a que Sergio diga que sí.
-5. **Al terminar cada tarea:** di cómo probarlo en el juego (qué teclas, qué debería pasar) y sugiere un mensaje de commit.
+5. **Al terminar cada tarea:** di cómo probarlo en el juego (qué teclas, qué debería pasar) y sugiere un mensaje de commit. Si algo ha cambiado (archivos, nodos, sistemas, lecciones aprendidas), propón también actualizar este CLAUDE.md.
 6. **No hagas commits ni push** sin que Sergio lo pida.
 7. **Escenas (.tscn):** edítalas con cuidado. Si un cambio es más seguro o didáctico hacerlo en el editor de Godot, da los pasos exactos (qué nodo, qué propiedad del Inspector, qué valor) en lugar de editar el archivo.
 
@@ -32,12 +32,12 @@ Su objetivo es aprender a dirigir y revisar el trabajo de la IA, no solo recibir
 
 | Archivo | Qué es |
 |---|---|
-| `mundo.tscn` | Escena principal: Suelo (500×500), Sol, Luna, WorldEnvironment, Jugador, árboles, rocas, arbustos, conejos y una hoguera |
-| `jugador.tscn` + `jugador.gd` | CharacterBody3D con cámara cenital hija. UI en `CanvasLayer`: `ContadorMadera` (texto de ayuda), `BarraVida`, `BarraHambre` e `Inventario/VBoxContainer/{Titulo, Casillas}` |
+| `mundo.tscn` | Escena principal: Suelo (500×500), Sol, Luna, WorldEnvironment, Jugador (con su hija `Camara`), árboles, rocas, arbustos, conejos y una hoguera |
+| `jugador.tscn` + `jugador.gd` | CharacterBody3D. La cámara cenital (`Camara`) **no está aquí**: está en `mundo.tscn` como hija de la instancia `Jugador`. UI en `CanvasLayer`: `ContadorMadera` (texto de ayuda), `BarraVida`, `BarraHambre` e `Inventario/VBoxContainer/{Titulo, Casillas}` |
 | `recurso.gd` | Script genérico para todo lo que se recolecta con E. `@export tipo_recurso, cantidad, golpes_necesarios`. Necesita un hijo `ZonaInteraccion` (Area3D) |
 | `arbol.tscn`, `roca.tscn`, `arbusto.tscn`, `conejo.tscn` | Usan `recurso.gd` (madera / piedra / bayas / carne_cruda) |
 | `hoguera.tscn` + `hoguera.gd` | Ilumina (OmniLight3D) y cocina carne con E si el jugador está en su `ZonaInteraccion` |
-| `ciclo_dia.gd` | En el nodo `Sol`. Gira sol y luna y ajusta el brillo del cielo |
+| `ciclo_dia.gd` | En el nodo `Sol`. Gira sol y luna, cambia el color de la luz y del cielo según la altura del sol, cruza suavemente las luces y sombras del sol y la luna, y muestra estrellas de noche (textura `NoiseTexture2D` en `Sky Cover` del `ProceduralSkyMaterial`). Todos los colores y rangos son `@export` agrupados en el Inspector |
 
 ## Sistemas existentes
 
@@ -56,3 +56,5 @@ Su objetivo es aprender a dirigir y revisar el trabajo de la IA, no solo recibir
 - La `ZonaInteraccion` (Area3D) debe ser **más grande** que la colisión sólida; si no, el jugador choca antes de entrar en la zona y la E no funciona.
 - Al duplicar nodos con estilos (StyleBox) o materiales, usar **"Hacer único"** si deben ser independientes.
 - No usar carpetas de OneDrive para el proyecto.
+- La cámara actual mira hacia abajo y apenas ve el cielo: los colores del cielo se notan sobre todo a través de la **luz ambiente**. Para probar el cielo, girar la `Camara` temporalmente.
+- `background_energy_multiplier` oscurece **todo** el cielo, estrellas incluidas; por eso `ciclo_dia.gd` compensa el brillo de las estrellas.
