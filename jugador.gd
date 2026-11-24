@@ -6,18 +6,36 @@ const COSTE_HOGUERA_MADERA = 5
 const COSTE_HOGUERA_PIEDRA = 3
 const ESCENA_HOGUERA = preload("res://hoguera.tscn")
 
+@export var vida_maxima: float = 100.0
+@export var hambre_maxima: float = 100.0
+@export var velocidad_hambre: float = 2.0
+@export var dano_por_hambre: float = 5.0
+
 var madera = 0
 var piedra = 0
+var vida: float
+var hambre: float
+var posicion_inicial: Vector3
+
 @onready var contador_madera = $CanvasLayer/ContadorMadera
+@onready var barra_vida = $CanvasLayer/BarraVida
+@onready var barra_hambre = $CanvasLayer/BarraHambre
 
 
 func _ready() -> void:
+	posicion_inicial = global_position
+	vida = vida_maxima
+	hambre = hambre_maxima
+	barra_vida.max_value = vida_maxima
+	barra_hambre.max_value = hambre_maxima
 	actualizar_contador()
+	actualizar_barras()
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("construir"):
 		construir_hoguera()
+	actualizar_supervivencia(delta)
 
 
 func _physics_process(delta: float) -> void:
@@ -42,12 +60,46 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func actualizar_supervivencia(delta: float) -> void:
+	hambre = max(hambre - velocidad_hambre * delta, 0.0)
+	if hambre <= 0.0:
+		vida = max(vida - dano_por_hambre * delta, 0.0)
+	actualizar_barras()
+	if vida <= 0.0:
+		morir()
+
+
+func morir() -> void:
+	print("Has muerto. Pierdes todo lo que llevabas.")
+	madera = 0
+	piedra = 0
+	vida = vida_maxima
+	hambre = hambre_maxima
+	global_position = posicion_inicial
+	velocity = Vector3.ZERO
+	actualizar_contador()
+	actualizar_barras()
+
+
+func actualizar_barras() -> void:
+	barra_vida.value = vida
+	barra_hambre.value = hambre
+
+
 func agregar_recurso(tipo: String, cantidad: int) -> void:
 	if tipo == "madera":
 		madera += cantidad
 	elif tipo == "piedra":
 		piedra += cantidad
+	elif tipo == "bayas":
+		comer(cantidad)
 	actualizar_contador()
+	
+func comer(cantidad: int) -> void:
+	hambre = min(hambre + cantidad, hambre_maxima)
+	actualizar_barras()
+	print("¡Ñam! Hambre: ", hambre)	
+	
 
 
 func actualizar_contador() -> void:

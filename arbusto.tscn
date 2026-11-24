@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bdormx14t2kib"]
+
+[ext_resource type="Script" uid="uid://qsfnbn7je72b" path="res://recurso.gd" id="1_bbo51"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxalo"]
+albedo_color = Color(0.18039216, 0.41960785, 0.18039216, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wddc5"]
+material = SubResource("StandardMaterial3D_oxalo")
+radius = 0.6
+height = 0.9
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wddc5"]
+height = 0.9
+radius = 0.6
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_40n1s"]
+radius = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbo51"]
+albedo_color = Color(0.7529412, 0.09411765, 0.16862746, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_40n1s"]
+material = SubResource("StandardMaterial3D_bbo51")
+radius = 0.08
+height = 0.16
+
+[node name="Arbusto" type="StaticBody3D" unique_id=2080985871]
+script = ExtResource("1_bbo51")
+tipo_recurso = "bayas"
+cantidad = 25
+golpes_necesarios = 1
+
+[node name="Hojas" type="MeshInstance3D" parent="." unique_id=1584736784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+mesh = SubResource("SphereMesh_wddc5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1309103122]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+shape = SubResource("CylinderShape3D_wddc5")
+
+[node name="ZonaInteraccion" type="Area3D" parent="." unique_id=242894854]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZonaInteraccion" unique_id=1208924148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_40n1s")
+
+[node name="Baya" type="MeshInstance3D" parent="." unique_id=1297713277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.55, 0.25)
+mesh = SubResource("SphereMesh_40n1s")
+
+[node name="Baya2" type="MeshInstance3D" parent="." unique_id=616922185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.7, 0.38)
+mesh = SubResource("SphereMesh_40n1s")
+
+[node name="Baya3" type="MeshInstance3D" parent="." unique_id=2134729437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.8, -0.35)
+mesh = SubResource("SphereMesh_40n1s")
+
+[node name="Baya4" type="MeshInstance3D" parent="." unique_id=1337457762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.45, -0.2)
+mesh = SubResource("SphereMesh_40n1s")

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ko47hqrhenvs" path="res://ciclo_dia.gd" id="1_otwa2"]
 [ext_resource type="PackedScene" uid="uid://q5wxdp1tdkxq" path="res://arbol.tscn" id="2_lgngo"]
 [ext_resource type="PackedScene" uid="uid://bhddpswqiqe3d" path="res://roca.tscn" id="3_fw4w5"]
+[ext_resource type="PackedScene" uid="uid://bdormx14t2kib" path="res://arbusto.tscn" id="5_aou4a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwo6f"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -78,3 +79,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -4)
 light_color = Color(0.6666667, 0.76862746, 1, 1)
 light_energy = 0.0
 shadow_enabled = true
+
+[node name="Arbusto" parent="." unique_id=753671655 instance=ExtResource("5_aou4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4)
+
+[node name="Arbusto2" parent="." unique_id=200894842 instance=ExtResource("5_aou4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+
+[node name="Arbusto3" parent="." unique_id=1067172434 instance=ExtResource("5_aou4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 12)
+
+[node name="Arbusto4" parent="." unique_id=459735077 instance=ExtResource("5_aou4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -15)
