@@ -41,7 +41,7 @@ Su objetivo es aprender a dirigir y revisar el trabajo de la IA, no solo recibir
 | Archivo | Qué es |
 |---|---|
 | `mundo.tscn` | Escena principal: Suelo (500×500), Sol, Luna, WorldEnvironment, Jugador (con su hija `Camara`), árboles, rocas, arbustos, conejos y una hoguera |
-| `jugador.tscn` + `jugador.gd` | CharacterBody3D. La cámara cenital (`Camara`) **no está aquí**: está en `mundo.tscn` como hija de la instancia `Jugador`. UI en `CanvasLayer`: `ContadorMadera` (texto de ayuda), `BarraVida`, `BarraHambre` e `Inventario/VBoxContainer/{Titulo, Casillas}` |
+| `jugador.tscn` + `jugador.gd` | CharacterBody3D. La cámara cenital (`Camara`) **no está aquí**: está en `mundo.tscn` como hija de la instancia `Jugador`. UI en `CanvasLayer`: `ContadorMadera` (texto de ayuda), `BarraVida`, `BarraHambre`, `BarraSed` e `Inventario/VBoxContainer/{Titulo, Casillas}` |
 | `recurso.gd` | Script genérico para todo lo que se recolecta con E. `@export tipo_recurso, cantidad, golpes_necesarios`. Necesita un hijo `ZonaInteraccion` (Area3D) |
 | `arbol.tscn`, `roca.tscn`, `arbusto.tscn`, `conejo.tscn` | Usan `recurso.gd` (madera / piedra / bayas / carne_cruda) |
 | `hoguera.tscn` + `hoguera.gd` | Ilumina (OmniLight3D) y cocina carne con E si el jugador está en su `ZonaInteraccion` |
@@ -51,7 +51,7 @@ Su objetivo es aprender a dirigir y revisar el trabajo de la IA, no solo recibir
 
 - **Inventario:** diccionario `inventario` en `jugador.gd`. Funciones: `cantidad_de(item)`, `agregar_item(item, cantidad)`, `quitar_item(item, cantidad)`, `tiene_materiales(coste)`. Los nombres visibles están en la constante `NOMBRES`.
 - **Recolección:** `recurso.gd` llama a `jugador.agregar_recurso(tipo, cantidad)`. Las bayas se comen directamente; el resto va al inventario.
-- **Supervivencia:** vida y hambre (`@export` en el jugador). Con el hambre a 0 se pierde vida. Al morir se vacía el inventario y se reaparece en la posición inicial.
+- **Supervivencia:** vida, hambre y sed (`@export` en el jugador). Con el hambre o la sed a 0 se pierde vida (los daños se suman). Todavía no se puede beber. Al morir se vacía el inventario y se reaparece en la posición inicial.
 - **Construcción:** B construye una hoguera delante del jugador con el coste `COSTE_HOGUERA` (diccionario).
 - **Comida:** F come carne (prioriza la asada: +40 hambre; la cruda da +10 y quita 10 de vida).
 

@@ -57,7 +57,7 @@
 
 ## 4. Supervivencia
 
-- **Necesidades:** vida y hambre (implementadas); sed y energía (pendientes). Con el hambre a 0 se pierde vida.
+- **Necesidades:** vida, hambre y sed (implementadas; falta poder beber); energía (pendiente). Con el hambre o la sed a 0 se pierde vida, y los daños se suman.
 - **Recolección:** madera, piedra, fibra, bayas, carne, pieles y minerales. Las herramientas mejoran la velocidad y desbloquean materiales nuevos.
 - **Cocina:** la comida cruda alimenta poco o sienta mal; cocinada en hoguera, horno o cocina da más energía y beneficios.
 - **Día y noche:** de noche hay más depredadores y menos visibilidad. La hoguera es la zona segura.
@@ -298,7 +298,7 @@ Estado a 24 de noviembre de 2026: fases 0 y 1 completas, fase 2 en torno al 75 %
 - [x] Cocinar carne en la hoguera (E) y comerla (F); la carne cruda quita vida
 - [x] Inventario con interfaz (TAB) basado en un diccionario genérico
 - [x] Atardecer con luz cálida, transición suave sol/luna y estrellas (primera tarea hecha con Claude Code)
-- [ ] Sed y fuentes de agua
+- [ ] Sed y fuentes de agua (barra de sed hecha; **siguiente paso:** fuente de agua para beber con E)
 - [ ] Menú de construcción
 - [ ] Herramientas básicas: hacha y pico de piedra
 - [ ] Guardar y cargar partida
@@ -383,7 +383,7 @@ Estado a 24 de noviembre de 2026: fases 0 y 1 completas, fase 2 en torno al 75 %
 ## 14. Ideas y notas sueltas
 
 - **Coste real de la hoguera:** ya usa madera + piedra, como quería Sergio.
-- **Valores de prueba:** el hambre baja rápido (se vacía en 50 s) para probar; hay que ajustarlo antes de la demo.
+- **Valores de prueba:** el hambre (se vacía en 50 s) y la sed (en unos 33 s) bajan rápido para probar; hay que ajustarlo antes de la demo.
 - **Devlog:** grabar vídeos cortos del progreso desde ya (p. ej. "De cero a talar árboles y cocinar en Godot en 2 días") para TikTok/Instagram/YouTube.
 - **Marketing futuro:** demo gratis, Discord, contacto con YouTubers y wishlists en Steam antes del lanzamiento.
 - **Prototipos rápidos:** se puede usar Claude para generar bocetos visuales rápidos (p. ej. un HTML con Three.js) antes de construir algo en Godot.
