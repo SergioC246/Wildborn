@@ -20,15 +20,20 @@ const NOMBRES = {
 @export var hambre_maxima: float = 100.0
 @export var velocidad_hambre: float = 2.0
 @export var dano_por_hambre: float = 5.0
+@export var sed_maxima: float = 100.0
+@export var velocidad_sed: float = 3.0
+@export var dano_por_sed: float = 5.0
 
 var inventario = {}
 var vida: float
 var hambre: float
+var sed: float
 var posicion_inicial: Vector3
 
 @onready var texto_ayuda = $CanvasLayer/ContadorMadera
 @onready var barra_vida = $CanvasLayer/BarraVida
 @onready var barra_hambre = $CanvasLayer/BarraHambre
+@onready var barra_sed = $CanvasLayer/BarraSed
 @onready var panel_inventario = $CanvasLayer/Inventario
 @onready var casillas = $CanvasLayer/Inventario/VBoxContainer/Casillas
 
@@ -37,8 +42,10 @@ func _ready() -> void:
 	posicion_inicial = global_position
 	vida = vida_maxima
 	hambre = hambre_maxima
+	sed = sed_maxima
 	barra_vida.max_value = vida_maxima
 	barra_hambre.max_value = hambre_maxima
+	barra_sed.max_value = sed_maxima
 	texto_ayuda.text = "TAB: Inventario"
 	panel_inventario.visible = false
 	actualizar_barras()
@@ -123,6 +130,9 @@ func actualizar_supervivencia(delta: float) -> void:
 	hambre = max(hambre - velocidad_hambre * delta, 0.0)
 	if hambre <= 0.0:
 		vida = max(vida - dano_por_hambre * delta, 0.0)
+	sed = max(sed - velocidad_sed * delta, 0.0)
+	if sed <= 0.0:
+		vida = max(vida - dano_por_sed * delta, 0.0)
 	actualizar_barras()
 	if vida <= 0.0:
 		morir()
@@ -133,6 +143,7 @@ func morir() -> void:
 	inventario.clear()
 	vida = vida_maxima
 	hambre = hambre_maxima
+	sed = sed_maxima
 	global_position = posicion_inicial
 	velocity = Vector3.ZERO
 	actualizar_barras()
@@ -142,6 +153,7 @@ func morir() -> void:
 func actualizar_barras() -> void:
 	barra_vida.value = vida
 	barra_hambre.value = hambre
+	barra_sed.value = sed
 
 
 func agregar_recurso(tipo: String, cantidad: int) -> void:

@@ -12,6 +12,9 @@ bg_color = Color(0.7529412, 0.22352941, 0.16862746, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_omvyu"]
 bg_color = Color(0.9019608, 0.49411765, 0.13333334, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8o684"]
+bg_color = Color(0.22745098, 0.54901963, 0.8509804, 1)
+
 [node name="Jugador" type="CharacterBody3D" unique_id=824565509]
 script = ExtResource("1_16k11")
 
@@ -48,6 +51,15 @@ offset_top = 110.0
 offset_right = 270.0
 offset_bottom = 135.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_omvyu")
+value = 100.0
+show_percentage = false
+
+[node name="BarraSed" type="ProgressBar" parent="CanvasLayer" unique_id=1077893937]
+offset_left = 20.0
+offset_top = 145.0
+offset_right = 270.0
+offset_bottom = 170.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_8o684")
 value = 100.0
 show_percentage = false
 
