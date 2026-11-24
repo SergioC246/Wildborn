@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://q5wxdp1tdkxq" path="res://arbol.tscn" id="2_lgngo"]
 [ext_resource type="PackedScene" uid="uid://bhddpswqiqe3d" path="res://roca.tscn" id="3_fw4w5"]
 [ext_resource type="PackedScene" uid="uid://bdormx14t2kib" path="res://arbusto.tscn" id="5_aou4a"]
+[ext_resource type="PackedScene" uid="uid://ggpuw25pp0yt" path="res://conejo.tscn" id="6_2hh7m"]
+[ext_resource type="PackedScene" uid="uid://bjj4v7ctt5aij" path="res://hoguera.tscn" id="7_t8jxu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwo6f"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -91,3 +93,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 12)
 
 [node name="Arbusto4" parent="." unique_id=459735077 instance=ExtResource("5_aou4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -15)
+
+[node name="Conejo" parent="." unique_id=2137198261 instance=ExtResource("6_2hh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -4)
+
+[node name="Conejo2" parent="." unique_id=1411411673 instance=ExtResource("6_2hh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 5)
+
+[node name="Conejo3" parent="." unique_id=1829943863 instance=ExtResource("6_2hh7m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7)
+
+[node name="Hoguera" parent="." unique_id=1136606766 instance=ExtResource("7_t8jxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)

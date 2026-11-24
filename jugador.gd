@@ -6,6 +6,10 @@ const COSTE_HOGUERA_MADERA = 5
 const COSTE_HOGUERA_PIEDRA = 3
 const ESCENA_HOGUERA = preload("res://hoguera.tscn")
 
+const HAMBRE_CARNE_CRUDA = 10
+const DANO_CARNE_CRUDA = 10
+const HAMBRE_CARNE_ASADA = 40
+
 @export var vida_maxima: float = 100.0
 @export var hambre_maxima: float = 100.0
 @export var velocidad_hambre: float = 2.0
@@ -13,6 +17,8 @@ const ESCENA_HOGUERA = preload("res://hoguera.tscn")
 
 var madera = 0
 var piedra = 0
+var carne_cruda = 0
+var carne_asada = 0
 var vida: float
 var hambre: float
 var posicion_inicial: Vector3
@@ -35,6 +41,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("construir"):
 		construir_hoguera()
+	if Input.is_action_just_pressed("comer"):
+		comer_carne()
 	actualizar_supervivencia(delta)
 
 
@@ -73,6 +81,8 @@ func morir() -> void:
 	print("Has muerto. Pierdes todo lo que llevabas.")
 	madera = 0
 	piedra = 0
+	carne_cruda = 0
+	carne_asada = 0
 	vida = vida_maxima
 	hambre = hambre_maxima
 	global_position = posicion_inicial
@@ -93,17 +103,45 @@ func agregar_recurso(tipo: String, cantidad: int) -> void:
 		piedra += cantidad
 	elif tipo == "bayas":
 		comer(cantidad)
+	elif tipo == "carne_cruda":
+		carne_cruda += cantidad
 	actualizar_contador()
-	
+
+
 func comer(cantidad: int) -> void:
 	hambre = min(hambre + cantidad, hambre_maxima)
 	actualizar_barras()
-	print("¡Ñam! Hambre: ", hambre)	
-	
+	print("¡Ñam! Hambre: ", hambre)
+
+
+func comer_carne() -> void:
+	if carne_asada > 0:
+		carne_asada -= 1
+		comer(HAMBRE_CARNE_ASADA)
+		print("¡Carne asada! Deliciosa.")
+	elif carne_cruda > 0:
+		carne_cruda -= 1
+		comer(HAMBRE_CARNE_CRUDA)
+		vida = max(vida - DANO_CARNE_CRUDA, 0.0)
+		print("Carne cruda... te sienta mal.")
+	else:
+		print("No tienes carne.")
+	actualizar_contador()
+	actualizar_barras()
+
+
+func cocinar_carne() -> void:
+	if carne_cruda > 0:
+		carne_cruda -= 1
+		carne_asada += 1
+		actualizar_contador()
+		print("Has asado un trozo de carne.")
+	else:
+		print("No tienes carne cruda para cocinar.")
 
 
 func actualizar_contador() -> void:
-	contador_madera.text = "Madera: " + str(madera) + "    Piedra: " + str(piedra)
+	contador_madera.text = "Madera: " + str(madera) + "    Piedra: " + str(piedra) + "    Carne cruda: " + str(carne_cruda) + "    Carne asada: " + str(carne_asada)
 
 
 func construir_hoguera() -> void:
