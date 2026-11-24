@@ -3,7 +3,15 @@
 Juego de supervivencia de mundo abierto para un jugador, hecho en **Godot 4.7.2** con **GDScript**.
 Empiezas como exiliado sin nada en una tierra salvaje (Wildmarch) y acabas liderando una civilización que avanza por eras (primitiva → medieval → pólvora → industrial).
 
-Documento de diseño completo y hoja de ruta: https://claude.ai/artifact/8UVPNMUYDQqWahv1vSCVZm
+## Documento de diseño
+
+**[docs/diseno.md](docs/diseno.md)** es la fuente de verdad del diseño del juego y de la hoja de ruta (sección 13). Tenlo siempre en cuenta:
+
+- Antes de planificar una tarea, comprueba en qué fase de la hoja de ruta encaja y qué dice el diseño sobre ella.
+- Las decisiones marcadas como **(decidido)** están cerradas: no las cambies ni propongas algo que las contradiga sin hablarlo antes con Sergio.
+- Si una tarea obliga a tomar una decisión de diseño nueva, pregunta a Sergio en lugar de decidir tú.
+
+(Versión antigua en línea: https://claude.ai/artifact/8UVPNMUYDQqWahv1vSCVZm. Si no coincide, manda `docs/diseno.md`.)
 
 ## Quién trabaja en este proyecto
 
@@ -16,7 +24,7 @@ Su objetivo es aprender a dirigir y revisar el trabajo de la IA, no solo recibir
 2. **Un cambio cada vez.** No metas varias funciones nuevas a la vez. No toques lo que no se ha pedido.
 3. **No rompas lo que ya funciona.** Si un cambio afecta a otros sistemas, avisa antes.
 4. **Para cambios grandes, propón un plan primero** y espera a que Sergio diga que sí.
-5. **Al terminar cada tarea:** di cómo probarlo en el juego (qué teclas, qué debería pasar) y sugiere un mensaje de commit. Si algo ha cambiado (archivos, nodos, sistemas, lecciones aprendidas), propón también actualizar este CLAUDE.md.
+5. **Al terminar cada tarea:** di cómo probarlo en el juego (qué teclas, qué debería pasar) y sugiere un mensaje de commit. Si algo ha cambiado (archivos, nodos, sistemas, lecciones aprendidas), propón también actualizar este CLAUDE.md. Si la tarea completa algo de la hoja de ruta, o se ha tomado una decisión de diseño nueva, propón marcarlo o anotarlo en `docs/diseno.md`.
 6. **No hagas commits ni push** sin que Sergio lo pida.
 7. **Escenas (.tscn):** edítalas con cuidado. Si un cambio es más seguro o didáctico hacerlo en el editor de Godot, da los pasos exactos (qué nodo, qué propiedad del Inspector, qué valor) en lugar de editar el archivo.
 
